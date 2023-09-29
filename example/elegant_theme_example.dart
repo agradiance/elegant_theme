@@ -42,3 +42,28 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
+
+///Example
+///Change to next theme
+class ElegantDemoPage extends StatelessWidget {
+  const ElegantDemoPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Change Theme Page"),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            ///Change to next theme
+            ElegantTheme.controllerOf(context).nextTheme();
+          },
+          child: const Text("Next Theme"),
+        ),
+      ),
+    );
+  }
+}
