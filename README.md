@@ -11,12 +11,12 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-Elegant theme provided an awesome way to Beautify your Flutter Application
+Elegant theme is an awesome way to Beautify your Flutter Application
 
 ## Features
 
-Easily manage your application theme
-Toggle between provided themes
+>Easily manage your application theme
+>Toggle between provided themes
 
 ## Getting started
 
