@@ -8,7 +8,7 @@ class ElegantDemoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("TChange Theme Page"),
+        title: const Text("Change Theme Page"),
         centerTitle: true,
       ),
       body: Center(
