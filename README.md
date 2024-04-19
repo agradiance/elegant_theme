@@ -38,16 +38,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ///Create AwesomeTheme
-    return AwesomeTheme(
+    ///Create ElegantTheme
+    return ElegantTheme(
       themes: [
         ThemeData.dark(useMaterial3: true).copyWith(),
         ThemeData.dark(useMaterial3: true).copyWith(),
       ],
       child: MaterialApp(
-        title: 'Awesome Theme Example',
+        title: 'Elegant Theme Example',
         debugShowCheckedModeBanner: false,
-        theme: AwesomeTheme.themeOf(context),
+        theme: ElegantTheme.themeOf(context),
         home: const MyHomePage(),
       ),
     );
@@ -65,7 +65,7 @@ class MyHomePage extends StatelessWidget {
         centerTitle: true,
       ),
       body: const Center(
-        child: Text("Awesome data"),
+        child: Text("Elegant data"),
       ),
     );
   }

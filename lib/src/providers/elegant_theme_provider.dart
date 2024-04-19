@@ -24,16 +24,16 @@ class ElegantTheme extends StatefulWidget {
   }
 
   @override
-  State<ElegantTheme> createState() => _AwesomeThemeProviderState();
+  State<ElegantTheme> createState() => _ElegantThemeProviderState();
 }
 
-class _AwesomeThemeProviderState extends State<ElegantTheme> {
-  late final _ElegantThemeModel _awesomeThemeModel;
+class _ElegantThemeProviderState extends State<ElegantTheme> {
+  late final _ElegantThemeModel _elegantThemeModel;
 
   @override
   void initState() {
     super.initState();
-    _awesomeThemeModel = _ElegantThemeModel(
+    _elegantThemeModel = _ElegantThemeModel(
       data: widget.themes,
     );
   }
@@ -41,8 +41,12 @@ class _AwesomeThemeProviderState extends State<ElegantTheme> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
-      value: _awesomeThemeModel,
-      child: widget.child,
+      value: _elegantThemeModel,
+      child: Builder(
+        builder: (context) {
+          return widget.child;
+        },
+      ),
     );
   }
 }
