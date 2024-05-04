@@ -1,11 +1,11 @@
 name: elegant_theme
 description: Elegant theme is an awesome way to Beautify your Flutter Application.
-version: 0.0.4 #previous version 0.0.3
+version: 0.0.5 #previous version 0.0.4
 homepage:
 repository: https://github.com/agradiance/elegant_theme
 
 environment:
-  sdk: ">=3.3.2 <4.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:

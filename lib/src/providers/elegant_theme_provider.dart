@@ -8,11 +8,11 @@ part '../models/elegant_theme_model.dart';
 class ElegantTheme extends StatefulWidget {
   const ElegantTheme({
     super.key,
-    required this.child,
+    required this.builder,
     required this.themes,
   });
 
-  final Widget child;
+  final Widget Function(BuildContext context) builder;
   final List<ThemeData> themes;
 
   static ThemeData themeOf(BuildContext context) {
@@ -43,9 +43,7 @@ class _ElegantThemeProviderState extends State<ElegantTheme> {
     return ChangeNotifierProvider.value(
       value: _elegantThemeModel,
       child: Builder(
-        builder: (context) {
-          return widget.child;
-        },
+        builder: widget.builder,
       ),
     );
   }

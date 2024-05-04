@@ -6,22 +6,27 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     ///Create ElegantTheme
     return ElegantTheme(
       themes: [
-        ThemeData.dark(useMaterial3: true).copyWith(),
+        ThemeData.light(useMaterial3: true).copyWith(),
         ThemeData.dark(useMaterial3: true).copyWith(),
       ],
-      child: MaterialApp(
-        title: 'Elegant Theme Example',
-        debugShowCheckedModeBanner: false,
-        theme: ElegantTheme.themeOf(context),
-        home: const MyHomePage(),
-      ),
+      builder: (context) {
+        return MaterialApp(
+          title: 'Elegant Theme Example',
+          debugShowCheckedModeBanner: false,
+
+          ///Make [ElegantTheme] your app elegant Theme
+          ///Remember to use the builder context
+          theme: ElegantTheme.themeOf(context),
+          home: const MyHomePage(),
+        );
+      },
     );
   }
 }
@@ -37,7 +42,7 @@ class MyHomePage extends StatelessWidget {
         centerTitle: true,
       ),
       body: const Center(
-        child: Text("Awesome data"),
+        child: Text("Some Awesome data"),
       ),
     );
   }
