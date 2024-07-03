@@ -1,6 +1,19 @@
+    
+
+## 0.0.6
+
+### Added extension for Buildcontext.
+
+```dart
+    //you can now call 
+    context.elegantThemeData // returns ThemeData
+    context.elegantThemeController // returns ElegantThemeController  
+```
+
 ## 0.0.5
 
 * Bug fixes
+
 ### Breaking Changes
 
 - Changed `child` property in ElegantTheme to `builder` function. Update your code accordingly.
@@ -55,7 +68,6 @@ class MainApp extends StatelessWidget {
   }
 }
 ```
-
 
 ## 0.0.4
 

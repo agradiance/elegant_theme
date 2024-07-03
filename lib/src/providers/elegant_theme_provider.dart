@@ -1,9 +1,13 @@
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/elegant_theme_controller.dart';
 import '../models/elegant_theme_data.dart';
 
 part '../models/elegant_theme_model.dart';
+part '../extension/elegant_theme_extension.dart';
+
+typedef ElegantScheme = FlexScheme;
 
 class ElegantTheme extends StatefulWidget {
   const ElegantTheme({
