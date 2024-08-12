@@ -53,16 +53,12 @@ class _ElegantThemeModel with ChangeNotifier {
   }
 
   bool _switchThemeMode() {
-    if (themeMode == ThemeMode.system) {
+    if (themeMode == ThemeMode.dark || themeMode == ThemeMode.system) {
       themeMode = ThemeMode.light;
       notifyListeners();
       return true;
     } else if (themeMode == ThemeMode.light) {
       themeMode = ThemeMode.dark;
-      notifyListeners();
-      return true;
-    } else if (themeMode == ThemeMode.dark) {
-      themeMode = ThemeMode.system;
       notifyListeners();
       return true;
     }
