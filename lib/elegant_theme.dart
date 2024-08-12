@@ -1,5 +1,5 @@
 library elegant_theme;
 
-export './src/providers/elegant_theme_provider.dart';
-export './src/models/elegant_theme_controller.dart';
+export 'src/providers/elegant_theme.dart';
 export './src/models/elegant_theme_data.dart';
+export './src/extension/elegant_theme_extension.dart';

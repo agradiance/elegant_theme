@@ -1,4 +1,5 @@
 import 'package:elegant_theme/elegant_theme.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,17 +14,23 @@ class MyApp extends StatelessWidget {
     ///Create ElegantTheme
     return ElegantTheme(
       themes: [
-        ThemeData.light(useMaterial3: true).copyWith(),
-        ThemeData.dark(useMaterial3: true).copyWith(),
+        // Using ThemeData
+        ElegantThemeData.fromThemeData(name: "ThemeData", description: "My Elegant ThemeData", light: ThemeData.light(), dark: ThemeData.light()),
+
+        // Using ColorScheme
+        ElegantThemeData.fromColorScheme(name: "Color Scheme", colorScheme: ColorScheme.fromSwatch()),
+
+        //using Material3: useMaterial3 is true by default
+        ElegantThemeData.fromFlexScheme(name: "FlexScheme1", flexScheme: FlexScheme.aquaBlue),
+        ElegantThemeData.fromFlexScheme(name: "FlexScheme2", flexScheme: FlexScheme.aquaBlue, useMaterial3: true),
       ],
-      builder: (context) {
+      builder: (context, theme, themeMode) {
+        ///Make [ElegantTheme] your app elegant Theme
         return MaterialApp(
           title: 'Elegant Theme Example',
           debugShowCheckedModeBanner: false,
-
-          ///Make [ElegantTheme] your app elegant Theme
-          ///Remember to use the builder context
-          theme: ElegantTheme.themeOf(context),
+          theme: theme,
+          themeMode: themeMode,
           home: const MyHomePage(),
         );
       },
@@ -42,7 +49,7 @@ class MyHomePage extends StatelessWidget {
         centerTitle: true,
       ),
       body: const Center(
-        child: Text("Some Awesome data"),
+        child: ElegantDemoPage(),
       ),
     );
   }
@@ -61,12 +68,59 @@ class ElegantDemoPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            ///Change to next theme
-            ElegantTheme.controllerOf(context).nextTheme();
-          },
-          child: const Text("Next Theme"),
+        child: Wrap(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                ///Change to next theme
+                ElegantTheme.nextTheme(context);
+              },
+              child: const Text("Next Theme"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                ///Change using context
+                context.nextTheme();
+              },
+              child: const Text("Next Theme"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                ///Set dark theme Mode
+                ElegantTheme.switchToDarkThemeMode(context);
+              },
+              child: const Text("Dark Theme"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                ///Change using context
+                context.switchToDarkThemeMode();
+              },
+              child: const Text("Dark Theme"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                ///Set dark theme Mode
+                ElegantTheme.switchToLightThemeMode(context);
+              },
+              child: const Text("Light Theme"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                ///Change using context
+                context.switchToLightThemeMode();
+              },
+              child: const Text("Light Theme"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                ///Change to the first theme with name [FlexScheme1] as declare in the constructor
+                ///ElegantThemeData.fromFlexScheme(name: "FlexScheme1", flexScheme: FlexScheme.aquaBlue),
+                context.switchToThemeByName("FlexScheme1");
+              },
+              child: const Text("Swith to Theme By Name"),
+            ),
+          ],
         ),
       ),
     );
