@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 
 import '../models/elegant_theme_data.dart';
 part '../models/elegant_theme_model.dart';
-part '../types/elegant_theme_mode.dart';
 
 typedef ElegantScheme = FlexScheme;
 

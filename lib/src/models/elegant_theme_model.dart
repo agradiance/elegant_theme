@@ -88,7 +88,7 @@ class _ElegantThemeModel with ChangeNotifier {
   }
 
   bool _setDarkThemeMode() {
-    if (themeMode != _ElegantThemeMode.dark) {
+    if (themeMode != ThemeMode.dark) {
       themeMode = ThemeMode.dark;
       notifyListeners();
       return true;
