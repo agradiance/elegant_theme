@@ -1,3 +1,18 @@
+## 0.0.9
+
+```
+	//Before 0.0.9
+	ElegantThemeData.fromColorScheme(name: "Color Scheme", colorScheme: ColorScheme.fromSwatch()),
+
+
+	//Now in 0.0.9
+	ElegantThemeData.fromColorScheme(
+          name: "Color Scheme",
+          lightColorScheme: ColorScheme.fromSwatch(), //set for light theme
+          darkColorScheme: ColorScheme.fromSwatch(), //set for dark theme
+        ),
+```
+
 ## 0.0.8
 
 ### !!!BREAKING CHANGES!!!
@@ -162,7 +177,6 @@ class ElegantDemoPage extends StatelessWidget {
 	currentElegantThemeNameAndDescriptionRecord
 ```
 
-
 ## 0.0.7
 
 ### !!!BREAKING CHANGES!!!
@@ -326,7 +340,6 @@ class ElegantDemoPage extends StatelessWidget {
 
 	currentElegantThemeNameAndDescriptionRecord
 ```
-
 
 ## 0.0.6
 

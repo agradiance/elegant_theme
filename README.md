@@ -46,7 +46,11 @@ class MyApp extends StatelessWidget {
         ElegantThemeData.fromThemeData(name: "ThemeData", description: "My Elegant ThemeData", light: ThemeData.light(), dark: ThemeData.light()),
 
         // Using ColorScheme
-        ElegantThemeData.fromColorScheme(name: "Color Scheme", colorScheme: ColorScheme.fromSwatch()),
+        ElegantThemeData.fromColorScheme(
+          name: "Color Scheme",
+          lightColorScheme: ColorScheme.fromSwatch(), //set for light theme
+          darkColorScheme: ColorScheme.fromSwatch(), //set for dark theme
+        ),
 
         //using Material3: useMaterial3 is true by default
         ElegantThemeData.fromFlexScheme(name: "FlexScheme1", flexScheme: FlexScheme.aquaBlue),

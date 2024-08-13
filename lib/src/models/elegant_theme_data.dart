@@ -24,14 +24,15 @@ class ElegantThemeData {
   factory ElegantThemeData.fromColorScheme({
     required final String name,
     final String? description,
-    required ColorScheme colorScheme,
+    required ColorScheme lightColorScheme,
+    required ColorScheme darkColorScheme,
     bool useMaterial3 = true,
   }) {
     return ElegantThemeData._(
       name: name,
       description: description,
-      light: FlexThemeData.light(colorScheme: colorScheme, useMaterial3: useMaterial3),
-      dark: FlexThemeData.dark(colorScheme: colorScheme, useMaterial3: useMaterial3),
+      light: FlexThemeData.light(colorScheme: lightColorScheme, useMaterial3: useMaterial3),
+      dark: FlexThemeData.dark(colorScheme: darkColorScheme, useMaterial3: useMaterial3),
     );
   }
 

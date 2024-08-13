@@ -28,7 +28,7 @@ class ElegantTheme extends StatefulWidget {
   }
 
   static ThemeMode modeOf(BuildContext context) {
-    return Provider.of<_ElegantThemeModel>(context, listen: true).themeMode;
+    return Provider.of<_ElegantThemeModel>(context, listen: false).themeMode;
   }
 
   static ElegantTheme of(BuildContext context) {
