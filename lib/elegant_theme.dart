@@ -1,4 +1,4 @@
-library elegant_theme;
+library;
 
 export 'src/providers/elegant_theme.dart';
 export './src/models/elegant_theme_data.dart';

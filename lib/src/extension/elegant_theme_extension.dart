@@ -14,6 +14,18 @@ extension BuildContextExtension on BuildContext {
     return ElegantTheme.modeOf(this);
   }
 
+  bool get isDarkThemeMode {
+    return elegantTheme.isDarkThemeMode(this);
+  }
+
+  bool get isLightThemeMode {
+    return elegantTheme.isLightThemeMode(this);
+  }
+
+  bool get isSystemThemeMode {
+    return elegantTheme.isSystemThemeMode(this);
+  }
+
   bool nextTheme() {
     return ElegantTheme.nextTheme(this);
   }
@@ -38,11 +50,13 @@ extension BuildContextExtension on BuildContext {
     return ElegantTheme.switchToLightThemeMode(this);
   }
 
-  List<({String? description, String name})> get elegantThemeNameAndDescriptionRecordList {
+  List<({String? description, String name})>
+      get elegantThemeNameAndDescriptionRecordList {
     return ElegantTheme.getElegantThemeNameAndDescriptionRecordList(this);
   }
 
-  ({String? description, String name}) get currentElegantThemeNameAndDescriptionRecord {
+  ({String? description, String name})
+      get currentElegantThemeNameAndDescriptionRecord {
     return ElegantTheme.getCurrentElegantThemeNameAndDescriptionRecord(this);
   }
 }

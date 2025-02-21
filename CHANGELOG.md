@@ -1,5 +1,14 @@
     
 
+## 0.1.1
+
+```
+	added 
+  >> bool isDarkThemeMode(BuildContext)
+  >> bool isLightThemeMode(BuildContext)
+  >> bool isSystemThemeMode(BuildContext)
+``
+
 ## 0.1.0
 
 ```

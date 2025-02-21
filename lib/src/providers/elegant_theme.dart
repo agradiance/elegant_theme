@@ -16,11 +16,13 @@ class ElegantTheme extends StatefulWidget {
     required this.themes,
   }) : assert(themes != null && themes.length > 0);
 
-  final Widget Function(BuildContext context, ThemeData theme, ThemeMode themeMode) builder;
+  final Widget Function(
+      BuildContext context, ThemeData theme, ThemeMode themeMode) builder;
   final List<ElegantThemeData>? themes;
 
   static bool switchToThemeByName(BuildContext context, String themeName) {
-    return Provider.of<_ElegantThemeModel>(context, listen: false).setThemeByName(themeName);
+    return Provider.of<_ElegantThemeModel>(context, listen: false)
+        .setThemeByName(themeName);
   }
 
   static ThemeData dataOf(BuildContext context) {
@@ -32,35 +34,59 @@ class ElegantTheme extends StatefulWidget {
   }
 
   static ElegantTheme of(BuildContext context) {
-    return context.findAncestorWidgetOfExactType<ElegantTheme>() ?? (throw Exception('ElegantTheme not found in the widget tree.'));
+    return context.findAncestorWidgetOfExactType<ElegantTheme>() ??
+        (throw Exception('ElegantTheme not found in the widget tree.'));
   }
 
-  static List<({String? description, String name})> getElegantThemeNameAndDescriptionRecordList(BuildContext context) {
-    return Provider.of<_ElegantThemeModel>(context, listen: false).elegantThemeNameAndDescriptionRecordList;
+  static List<({String? description, String name})>
+      getElegantThemeNameAndDescriptionRecordList(BuildContext context) {
+    return Provider.of<_ElegantThemeModel>(context, listen: false)
+        .elegantThemeNameAndDescriptionRecordList;
   }
 
-  static ({String? description, String name}) getCurrentElegantThemeNameAndDescriptionRecord(BuildContext context) {
-    return Provider.of<_ElegantThemeModel>(context, listen: false).currentElegantThemeNameAndDescriptionRecord;
+  static ({String? description, String name})
+      getCurrentElegantThemeNameAndDescriptionRecord(BuildContext context) {
+    return Provider.of<_ElegantThemeModel>(context, listen: false)
+        .currentElegantThemeNameAndDescriptionRecord;
   }
 
   static bool nextTheme(BuildContext context) {
     return Provider.of<_ElegantThemeModel>(context, listen: false)._nextTheme();
   }
 
+  bool isDarkThemeMode(BuildContext context) {
+    return Provider.of<_ElegantThemeModel>(context, listen: false).themeMode ==
+        ThemeMode.dark;
+  }
+
+  bool isLightThemeMode(BuildContext context) {
+    return Provider.of<_ElegantThemeModel>(context, listen: false).themeMode
+        == ThemeMode.light;
+  }
+
+  bool isSystemThemeMode(BuildContext context) {
+    return Provider.of<_ElegantThemeModel>(context, listen: false).themeMode
+        == ThemeMode.system;
+  }
+
   static bool switchThemeMode(BuildContext context) {
-    return Provider.of<_ElegantThemeModel>(context, listen: false)._switchThemeMode();
+    return Provider.of<_ElegantThemeModel>(context, listen: false)
+        ._switchThemeMode();
   }
 
   static bool switchToSystemThemeMode(BuildContext context) {
-    return Provider.of<_ElegantThemeModel>(context, listen: false)._setSystemThemeMode();
+    return Provider.of<_ElegantThemeModel>(context, listen: false)
+        ._setSystemThemeMode();
   }
 
   static bool switchToLightThemeMode(BuildContext context) {
-    return Provider.of<_ElegantThemeModel>(context, listen: false)._setLightThemeMode();
+    return Provider.of<_ElegantThemeModel>(context, listen: false)
+        ._setLightThemeMode();
   }
 
   static bool switchToDarkThemeMode(BuildContext context) {
-    return Provider.of<_ElegantThemeModel>(context, listen: false)._setDarkThemeMode();
+    return Provider.of<_ElegantThemeModel>(context, listen: false)
+        ._setDarkThemeMode();
   }
 
   @override
@@ -84,7 +110,8 @@ class _ElegantThemeProviderState extends State<ElegantTheme> {
       value: _elegantThemeModel,
       child: Builder(
         builder: (context) {
-          return widget.builder(context, context.elegantThemeData, context.elegantThemeMode);
+          return widget.builder(
+              context, context.elegantThemeData, context.elegantThemeMode);
         },
       ),
     );
