@@ -31,6 +31,8 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  await ElegantTheme.initialize();	//ensure to call this if you set saveChanges to true
   runApp(const MyApp());
 }
 
@@ -41,6 +43,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     ///Create ElegantTheme
     return ElegantTheme(
+      //Persist changes, if you set saveChanges: true, ensure you call
+      //await ElegantTheme.initialize(); in main before  runApp(const MyApp());
+      saveChanges: true, 
+      initialThemeIndex: 1,  //set your initial theme index  from the themes
+      initialThemeMode: ThemeMode.dark, //set your initial themeMode
       themes: [
         // Using ThemeData
         ElegantThemeData.fromThemeData(name: "ThemeData", description: "My Elegant ThemeData", light: ThemeData.light(), dark: ThemeData.light()),
@@ -149,6 +156,19 @@ class ElegantDemoPage extends StatelessWidget {
                 ///Change to the first theme with name [FlexScheme1] as declare in the constructor
                 ///ElegantThemeData.fromFlexScheme(name: "FlexScheme1", flexScheme: FlexScheme.aquaBlue),
                 context.switchToThemeByName("FlexScheme1");
+              },
+              child: const Text("Swith to Theme By Name"),
+            ),
+            
+            ElevatedButton(
+              onPressed: () {
+                ///save the theme
+                ElegantTheme.saveTheme(
+                        context, // set the build context
+                        themeMode: ThemeMode.light, //[optional]
+                        themeIndex: 0, //[optional] should be in the range (0 <= themeIndex < themes.length)
+                        switchTo: true, //[optional] if true your app will switch to the save theme
+                );
               },
               child: const Text("Swith to Theme By Name"),
             ),

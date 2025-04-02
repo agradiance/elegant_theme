@@ -30,6 +30,15 @@ extension BuildContextExtension on BuildContext {
     return ElegantTheme.nextTheme(this);
   }
 
+  bool setThemeByIndex({required int index}) {
+    return ElegantTheme.setThemeByIndex(this, index: index);
+  }
+
+  void saveTheme({ThemeMode? themeMode, int? themeIndex, bool? switchTo}) {
+    return ElegantTheme.saveTheme(this,
+        themeIndex: themeIndex, themeMode: themeMode, switchTo: switchTo);
+  }
+
   bool switchToThemeByName(String themeName) {
     return ElegantTheme.switchToThemeByName(this, themeName);
   }

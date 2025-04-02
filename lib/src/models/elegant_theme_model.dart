@@ -1,10 +1,23 @@
 part of "../providers/elegant_theme.dart";
 
 class _ElegantThemeModel with ChangeNotifier {
-  int _currentThemeIndex = 0;
-  ThemeMode themeMode = ThemeMode.system;
+  int _currentThemeIndex;
+  ThemeMode themeMode;
+  bool saveChanges = true;
 
-  late List<ElegantThemeData> themeData;
+  late final List<ElegantThemeData> themeData;
+
+  _ElegantThemeModel({
+    List<ElegantThemeData>? data,
+    int? currentThemeIndex,
+    ThemeMode? themeMode,
+    this.saveChanges = true,
+  })  : assert(data != null && data.isNotEmpty),
+        themeData = data!,
+        themeMode = themeMode ?? ThemeMode.dark,
+        _currentThemeIndex = currentThemeIndex ?? 0 {
+    saveThemeChanges();
+  }
 
   ThemeData get theme => switch (themeMode) {
         ThemeMode.light => themeData[_currentThemeIndex].light,
@@ -13,10 +26,20 @@ class _ElegantThemeModel with ChangeNotifier {
       };
   List<ElegantThemeData> get data => themeData;
 
-  _ElegantThemeModel({
-    List<ElegantThemeData>? data,
-  })  : assert(data != null && data.isNotEmpty),
-        themeData = data!;
+  void saveThemeChanges({ThemeMode? mode, int? themeIndex}) async {
+    if (saveChanges) {
+      await ElegantTheme._saveThemeIndex(value: _currentThemeIndex);
+      await ElegantTheme._saveThemeMode(mode: themeMode);
+
+      ElegantTheme.initialize();
+    }
+  }
+
+  @override
+  void notifyListeners() {
+    super.notifyListeners();
+    saveThemeChanges();
+  }
 
   bool _nextTheme() {
     final length = data.length;
@@ -28,7 +51,18 @@ class _ElegantThemeModel with ChangeNotifier {
     return false;
   }
 
-  List<({String? description, String name})> get elegantThemeNameAndDescriptionRecordList {
+  bool _setThemeByIndex({required int index}) {
+    final length = data.length;
+    if (0 <= index && index < length) {
+      _currentThemeIndex = index;
+      notifyListeners();
+      return true;
+    }
+    return false;
+  }
+
+  List<({String? description, String name})>
+      get elegantThemeNameAndDescriptionRecordList {
     return themeData.map(
       (e) {
         return (name: e.name, description: e.description);
@@ -36,7 +70,8 @@ class _ElegantThemeModel with ChangeNotifier {
     ).toList();
   }
 
-  ({String? description, String name}) get currentElegantThemeNameAndDescriptionRecord {
+  ({String? description, String name})
+      get currentElegantThemeNameAndDescriptionRecord {
     final theme = themeData[_currentThemeIndex];
     return (name: theme.name, description: theme.description);
   }

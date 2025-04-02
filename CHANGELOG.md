@@ -1,5 +1,13 @@
     
 
+## 0.2.0
+
+```
+	added 
+  >> Theme changes can now be persisted by setting saveChanges to true
+```
+
+
 ## 0.1.1
 
 ```
@@ -7,7 +15,7 @@
   >> bool isDarkThemeMode(BuildContext)
   >> bool isLightThemeMode(BuildContext)
   >> bool isSystemThemeMode(BuildContext)
-``
+```
 
 ## 0.1.0
 

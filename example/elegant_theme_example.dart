@@ -2,7 +2,9 @@ import 'package:elegant_theme/elegant_theme.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await ElegantTheme.initialize();
   runApp(const MyApp());
 }
 
@@ -15,7 +17,11 @@ class MyApp extends StatelessWidget {
     return ElegantTheme(
       themes: [
         // Using ThemeData
-        ElegantThemeData.fromThemeData(name: "ThemeData", description: "My Elegant ThemeData", light: ThemeData.light(), dark: ThemeData.light()),
+        ElegantThemeData.fromThemeData(
+            name: "ThemeData",
+            description: "My Elegant ThemeData",
+            light: ThemeData.light(),
+            dark: ThemeData.light()),
 
         // Using ColorScheme
         ElegantThemeData.fromColorScheme(
@@ -25,8 +31,12 @@ class MyApp extends StatelessWidget {
         ),
 
         //using Material3: useMaterial3 is true by default
-        ElegantThemeData.fromFlexScheme(name: "FlexScheme1", flexScheme: FlexScheme.aquaBlue),
-        ElegantThemeData.fromFlexScheme(name: "FlexScheme2", flexScheme: FlexScheme.aquaBlue, useMaterial3: true),
+        ElegantThemeData.fromFlexScheme(
+            name: "FlexScheme1", flexScheme: FlexScheme.aquaBlue),
+        ElegantThemeData.fromFlexScheme(
+            name: "FlexScheme2",
+            flexScheme: FlexScheme.aquaBlue,
+            useMaterial3: true),
       ],
       builder: (context, theme, themeMode) {
         ///Make [ElegantTheme] your app elegant Theme
