@@ -162,15 +162,18 @@ class ElegantDemoPage extends StatelessWidget {
             
             ElevatedButton(
               onPressed: () {
-                ///save the theme
+                ///You may want to save the theme programmatically when the saveChanges is set to false
                 ElegantTheme.saveTheme(
                         context, // set the build context
                         themeMode: ThemeMode.light, //[optional]
                         themeIndex: 0, //[optional] should be in the range (0 <= themeIndex < themes.length)
                         switchTo: true, //[optional] if true your app will switch to the save theme
                 );
+
+                ///OR 
+                ///just call ElegantTheme.saveTheme(context) which saves the current theme you wave switch to
               },
-              child: const Text("Swith to Theme By Name"),
+              child: const Text("Save theme"),
             ),
           ],
         ),
