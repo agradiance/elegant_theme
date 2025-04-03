@@ -96,6 +96,7 @@ class ElegantTheme extends StatefulWidget with ElegantThemeMixin {
     if (switchTo == true) {
       setThemeByIndex(context, index: themeIndex ?? currentIndex);
     }
+    initialize();
   }
 
   final bool saveChanges;

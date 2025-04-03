@@ -1,5 +1,12 @@
     
 
+## 0.2.1
+
+```
+	added 
+  >> Theme changes can now be persisted by setting saveChanges to true
+```
+
 ## 0.2.0
 
 ```
