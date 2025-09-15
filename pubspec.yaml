@@ -1,6 +1,6 @@
 name: elegant_theme
 description: Elegant theme is an awesome way to Beautify your Flutter Application.
-version: 0.2.2 #previous version 0.2.1
+version: 0.2.4 #previous version 0.2.3
 homepage:
 repository: https://github.com/agradiance/elegant_theme
 
@@ -8,15 +8,15 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  flex_color_scheme: ^8.2.0
+  flex_color_scheme: ^8.3.0
   flutter:
     sdk: flutter
-  provider: ^6.1.4
+  provider: ^6.1.5+1
   shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 
 flutter:

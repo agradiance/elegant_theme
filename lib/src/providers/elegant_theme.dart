@@ -15,7 +15,7 @@ class ElegantTheme extends StatefulWidget with ElegantThemeMixin {
   static final String _savedThemeModeKey = "_ElegantTheme__SavedThemeModeKey";
 
   static int? _savedThemeIndex;
-  static ThemeMode? _savedThemeMode = ThemeMode.dark;
+  static ThemeMode? _savedThemeMode = ThemeMode.light;
 
   const ElegantTheme({
     super.key,
@@ -70,7 +70,7 @@ class ElegantTheme extends StatefulWidget with ElegantThemeMixin {
 
     final index = prefs.getInt(_savedThemeIndexKey);
     final sTHem = prefs.getString(_savedThemeModeKey).toString();
-    final themeMode = themeModeFromString(value: sTHem) ?? ThemeMode.dark;
+    final themeMode = themeModeFromString(value: sTHem) ?? ThemeMode.light;
 
     _savedThemeIndex = index;
     _savedThemeMode = themeMode;
@@ -118,6 +118,18 @@ class ElegantTheme extends StatefulWidget with ElegantThemeMixin {
 
   static ThemeMode modeOf(BuildContext context) {
     return Provider.of<_ElegantThemeModel>(context, listen: false).themeMode;
+  }
+
+  static bool isDark(BuildContext context) {
+    return modeOf(context) == ThemeMode.dark;
+  }
+
+  static bool isLight(BuildContext context) {
+    return modeOf(context) == ThemeMode.light;
+  }
+
+  static bool isSystem(BuildContext context) {
+    return modeOf(context) == ThemeMode.system;
   }
 
   static ElegantTheme of(BuildContext context) {

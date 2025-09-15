@@ -15,15 +15,15 @@ extension BuildContextExtension on BuildContext {
   }
 
   bool get isDarkThemeMode {
-    return elegantTheme.isDarkThemeMode(this);
+    return ElegantTheme.isDark(this);
   }
 
   bool get isLightThemeMode {
-    return elegantTheme.isLightThemeMode(this);
+    return ElegantTheme.isLight(this);
   }
 
   bool get isSystemThemeMode {
-    return elegantTheme.isSystemThemeMode(this);
+    return ElegantTheme.isSystem(this);
   }
 
   bool nextTheme() {

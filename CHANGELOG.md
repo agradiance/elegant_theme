@@ -1,5 +1,19 @@
     
 
+## 0.2.4
+
+```
+  >> dependencies upgrade
+  >> bug fixes
+```
+
+## 0.2.3
+
+```
+  >> dependencies upgrade
+```
+
+
 ## 0.2.2
 
 ```
