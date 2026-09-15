@@ -1,5 +1,5 @@
 import 'package:elegant_theme/elegant_theme.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 extension BuildContextExtension on BuildContext {
   ElegantTheme get elegantTheme {
