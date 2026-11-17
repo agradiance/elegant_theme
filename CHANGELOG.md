@@ -1,5 +1,14 @@
 
 
+## 0.3.1
+
+```
+  >> fix: app no longer opens to a grey/red screen when the saved theme index is out of
+     range (e.g. after removing or reordering themes in the list)
+  >> the selected theme is now also saved by name, so reordering the themes list keeps
+     the user's choice; a removed theme falls back to initialThemeIndex
+```
+
 ## 0.3.0
 
 ```

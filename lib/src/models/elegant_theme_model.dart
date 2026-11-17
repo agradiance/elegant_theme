@@ -15,7 +15,11 @@ class _ElegantThemeModel with ChangeNotifier {
   })  : assert(data != null && data.isNotEmpty),
         themeData = data!,
         themeMode = themeMode ?? ThemeMode.dark,
-        _currentThemeIndex = currentThemeIndex ?? 0 {
+        _currentThemeIndex = (currentThemeIndex != null &&
+                0 <= currentThemeIndex &&
+                currentThemeIndex < data!.length)
+            ? currentThemeIndex
+            : 0 {
     saveThemeChanges();
   }
 
@@ -29,6 +33,8 @@ class _ElegantThemeModel with ChangeNotifier {
   void saveThemeChanges({ThemeMode? mode, int? themeIndex}) async {
     if (saveChanges) {
       await ElegantTheme._saveThemeIndex(value: _currentThemeIndex);
+      await ElegantTheme._saveThemeName(
+          value: themeData[_currentThemeIndex].name);
       await ElegantTheme._saveThemeMode(mode: themeMode);
 
       ElegantTheme.initialize();

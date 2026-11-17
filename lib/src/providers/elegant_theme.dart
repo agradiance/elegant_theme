@@ -13,8 +13,10 @@ typedef ElegantScheme = FlexScheme;
 class ElegantTheme extends StatefulWidget with ElegantThemeMixin {
   static final String _savedThemeIndexKey = "_ElegantTheme__SavedThemeIndexKey";
   static final String _savedThemeModeKey = "_ElegantTheme__SavedThemeModeKey";
+  static final String _savedThemeNameKey = "_ElegantTheme__SavedThemeNameKey";
 
   static int? _savedThemeIndex;
+  static String? _savedThemeName;
   static ThemeMode? _savedThemeMode = ThemeMode.light;
 
   const ElegantTheme({
@@ -65,15 +67,51 @@ class ElegantTheme extends StatefulWidget with ElegantThemeMixin {
     return false;
   }
 
+  static Future<bool> _saveThemeName({required String? value}) async {
+    final pref = await _prefs;
+    if (value != null) {
+      return pref.setString(ElegantTheme._savedThemeNameKey, value);
+    }
+    return pref.remove(ElegantTheme._savedThemeNameKey);
+  }
+
   static Future<void> initialize() async {
     final SharedPreferences prefs = await ElegantTheme._prefs;
 
     final index = prefs.getInt(_savedThemeIndexKey);
+    final name = prefs.getString(_savedThemeNameKey);
     final sTHem = prefs.getString(_savedThemeModeKey).toString();
     final themeMode = themeModeFromString(value: sTHem) ?? ThemeMode.light;
 
     _savedThemeIndex = index;
+    _savedThemeName = name;
     _savedThemeMode = themeMode;
+  }
+
+  /// Works out which theme to start with, never returning an index outside [themes].
+  ///
+  /// 1. The saved theme name, if that theme is still in the list (survives reordering).
+  /// 2. Otherwise, if a name was saved but that theme was removed, [fallbackIndex].
+  /// 3. Otherwise (data saved by versions before 0.3.1, which only stored an index),
+  ///    the saved index if it is still in range.
+  /// 4. Otherwise [fallbackIndex], itself clamped into range.
+  static int _resolveStartIndex({
+    required List<ElegantThemeData> themes,
+    required int fallbackIndex,
+    int? savedIndex,
+    String? savedName,
+  }) {
+    final safeFallback =
+        (0 <= fallbackIndex && fallbackIndex < themes.length) ? fallbackIndex : 0;
+
+    if (savedName != null) {
+      final byName = themes.indexWhere((t) => t.name == savedName);
+      return byName != -1 ? byName : safeFallback;
+    }
+    if (savedIndex != null && 0 <= savedIndex && savedIndex < themes.length) {
+      return savedIndex;
+    }
+    return safeFallback;
   }
 
   static void saveTheme(BuildContext context,
@@ -88,6 +126,7 @@ class ElegantTheme extends StatefulWidget with ElegantThemeMixin {
         0 <= themeIndex &&
         themeIndex < theme.data.length) {
       _saveThemeIndex(value: themeIndex);
+      _saveThemeName(value: theme.data[themeIndex].name);
     }
     if (themeMode != null && themeMode != currentThemeMode) {
       _saveThemeMode(mode: themeMode);
@@ -192,8 +231,12 @@ class _ElegantThemeState extends State<ElegantTheme> {
       data: widget.themes,
       saveChanges: widget.saveChanges,
       themeMode: ElegantTheme._savedThemeMode ?? widget.initialThemeMode,
-      currentThemeIndex:
-          ElegantTheme._savedThemeIndex ?? widget.initialThemeIndex,
+      currentThemeIndex: ElegantTheme._resolveStartIndex(
+        themes: widget.themes!,
+        fallbackIndex: widget.initialThemeIndex,
+        savedIndex: ElegantTheme._savedThemeIndex,
+        savedName: ElegantTheme._savedThemeName,
+      ),
     );
   }
 
